@@ -8,7 +8,7 @@ from .setup import setup_wizard
 
 def plugin(supervisor):
     setup_path = i18n_url('setup:main')
-    ignored_paths = [setup_path, i18n_url('diag:main')]
+    ignored_paths = [setup_path, i18n_url('setup:diag')]
 
     def plugin(callback):
         @functools.wraps(callback)
