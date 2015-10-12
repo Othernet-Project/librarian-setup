@@ -1,19 +1,20 @@
 /* line 1, ../../../src/scss/setup.scss */
-.setup-finished {
-  padding-top: 3em;
-  padding-bottom: 4em;
+.image {
   text-align: center;
 }
-/* line 7, ../../../src/scss/setup.scss */
-.setup-finished .all-ok {
+/* line 4, ../../../src/scss/setup.scss */
+.image a {
+  width: 240px;
   display: inline-block;
-  margin-bottom: 1em;
 }
-/* line 12, ../../../src/scss/setup.scss */
-.setup-finished .main {
-  margin: 0;
+
+/* line 10, ../../../src/scss/setup.scss */
+.welcome {
+  text-align: center;
+  font-size: 180%;
 }
-/* line 16, ../../../src/scss/setup.scss */
-.setup-finished .sub {
-  color: silver;
+
+/* line 15, ../../../src/scss/setup.scss */
+.buttons {
+  text-align: center;
 }

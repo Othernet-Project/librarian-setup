@@ -1,105 +1,20 @@
-body.initial {
-  padding-top: 0;
+@import "compass/css3";
+@import "compass/typography/text/replacement";
+@import "base/params";
 
-  .menu {
-    display: none;
-  }
-}
-
-.menu {
-  .logo {
-  }
-
-  .steps {
-    margin-right: 20px;
-  }
-}
-
-.outernet-logo {
-  margin-top: 20px;
-  margin-bottom: 8px;
+.o-pulldown-menubar {
+  // Override the pulldown menubar settings
+  top: 0;
+  height: $o-pulldown-menubar-hbar-height;
 }
 
 .wizard-steps {
+  // Typography
   text-align: center;
-  color: silver;
-}
 
-.buttons {
-  a.button,
-  button
-  {
-    margin-bottom: 0.5em;
-  }
-}
-
-.timezone-container {
-  select:nth-child(2),
-  select:nth-child(3)
-  {
-    max-width: 48%;
-    margin-right: 0.2em;
-
-    @include phone-portrait-wide {
-      max-width: 100%;
-      margin-bottom: 0.2em;
-    }
-  }
-}
-
-.steps {
-  display: inline-block;
-
-  span {
-    display: inline-block;
-  }
+  // Basic geometry
+  padding-top: 1rem;
 
   .step {
-  }
-
-  .previous {
-  }
-
-  .current {
-  }
-}
-
-.h-bar {
-  position: relative;
-
-  .step-logo {
-    display: block;
-    position: absolute;
-    bottom: -30px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-
-  @each $step-name in (language, datetime, superuser, ondd) {
-    .step-#{$step-name} {
-    }
-  }
-
-  padding-bottom: 50px;
-}
-
-.large {
-  padding-left: $form-text-offset;
-  color: $border;
-  font-size: 200%;
-  line-height: 120%;
-}
-
-.note {
-  .label {
-
-    &.inline {
-      display: inline-block;
-    }
-  }
-
-  .large {
-    color: $sky25d;
   }
 }

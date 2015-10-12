@@ -1,19 +1,17 @@
-.setup-finished {
-  padding-top: 3em;
-  padding-bottom: 4em;
-
+.image {
   text-align: center;
 
-  .all-ok {
+  a {
+    width: image-width('outernet_beta.png') / 2;
     display: inline-block;
-    margin-bottom: 1em;
   }
+}
 
-  .main {
-    margin: 0;
-  }
+.welcome {
+  text-align: center;
+  font-size: 180%;
+}
 
-  .sub {
-    color: silver;
-  }
+.buttons {
+  text-align: center;
 }
