@@ -25,7 +25,7 @@ def iter_lines(lines):
         yield lines.pop()
 
 
-@view('diag')
+@view('diag/diag')
 def diag():
     if setup_wizard.is_completed:
         redirect('/')
