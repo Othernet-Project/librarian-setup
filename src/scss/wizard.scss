@@ -12,12 +12,6 @@ body.initial {
 
   .steps {
     margin-right: 20px;
-
-    .label {
-      @include phone-portrait-wide {
-        display: none;
-      }
-    }
   }
 }
 
@@ -28,7 +22,7 @@ body.initial {
 
 .wizard-steps {
   text-align: center;
-  color: $iconic;
+  color: silver;
 }
 
 .buttons {
