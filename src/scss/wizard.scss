@@ -1,9 +1,3 @@
-@import "compass/typography";
-@import "outernet/ui";
-@import "outernet/mixins/media_query";
-@import "partials/common_elements";
-@import "partials/footer";
-
 body.initial {
   padding-top: 0;
 
@@ -14,8 +8,6 @@ body.initial {
 
 .menu {
   .logo {
-    @include hide-text;
-    @include misc-icon('logo_menu', yes);
   }
 
   .steps {
@@ -30,8 +22,6 @@ body.initial {
 }
 
 .outernet-logo {
-  @include hide-text;
-  @include app-icon('logo_setup');
   margin-top: 20px;
   margin-bottom: 8px;
 }
@@ -71,15 +61,12 @@ body.initial {
   }
 
   .step {
-    @include icon(step_next);
   }
 
   .previous {
-    @include icon(step_done);
   }
 
   .current {
-    @include icon(step_active);
   }
 }
 
@@ -97,7 +84,6 @@ body.initial {
 
   @each $step-name in (language, datetime, superuser, ondd) {
     .step-#{$step-name} {
-      @include app-icon(step_#{$step_name});
     }
   }
 
@@ -113,7 +99,6 @@ body.initial {
 
 .note {
   .label {
-    @include label;
 
     &.inline {
       display: inline-block;
