@@ -14,7 +14,7 @@
         <%block name="header">
         <header class="menu">
             <div class="menu-subblock">
-                <a class="logo" href="${i18n_url('/')}"><span lang="en">Outernet</span></a>
+                <a class="logo" href="${i18n_path('/')}"><span lang="en">Outernet</span></a>
             </div>
             <div class="menu-block-right">
                 <div class="steps menu-subblock">
