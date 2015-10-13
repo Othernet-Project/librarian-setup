@@ -23,7 +23,7 @@ def iter_lines(lines):
         yield lines.pop()
 
 
-@view('diag')
+@view('diag/diag')
 def diag():
     if request.app.supervisor.exts.is_completed:
         redirect('/')

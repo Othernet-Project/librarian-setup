@@ -63,11 +63,12 @@ class Setup(object):
         data = dict()
         for name, configurator in AUTO_CONFIGURATORS.items():
             data[name] = configurator()
+        print(data)
         return data
 
 
 class SetupWizard(Wizard):
-    finished_template = 'setup_finished.tpl'
+    finished_template = 'setup/setup_finished.tpl'
     allow_override = True
     start_index = 1
     template_func = template

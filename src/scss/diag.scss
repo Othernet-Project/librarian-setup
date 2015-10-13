@@ -1,12 +1,4 @@
-@import "outernet/mixins/colors";
-@import "outernet/mixins/media_query";
-
 .diag {
-  @include wider-than(960px) {
-    width: 50%;
-    margin: 0 auto;
-  }
-
   table {
     margin: 1em 0;
   }
@@ -22,11 +14,11 @@
   }
 
   .no-tuner {
-    color: $fire;
+    color: red;
     font-weight: bold;
   }
 
   .has-tuner {
-    color: $forest;
+    color: green;
   }
 }

@@ -1,0 +1,20 @@
+/* line 1, ../../../src/scss/setup.scss */
+.image {
+  text-align: center;
+}
+/* line 4, ../../../src/scss/setup.scss */
+.image a {
+  width: 240px;
+  display: inline-block;
+}
+
+/* line 10, ../../../src/scss/setup.scss */
+.welcome {
+  text-align: center;
+  font-size: 180%;
+}
+
+/* line 15, ../../../src/scss/setup.scss */
+.buttons {
+  text-align: center;
+}
