@@ -3,8 +3,6 @@ import functools
 from bottle import request, redirect
 from bottle_utils.i18n import i18n_url
 
-from .setup import setup_wizard
-
 
 def plugin(supervisor):
     setup_path = i18n_url('setup:main')
@@ -13,7 +11,7 @@ def plugin(supervisor):
     def plugin(callback):
         @functools.wraps(callback)
         def wrapper(*args, **kwargs):
-            if (not setup_wizard.is_completed and
+            if (not supervisor.exts.setup_wizard.is_completed and
                     not any([request.path == path[len(request.locale) + 1:]
                              for path in ignored_paths])):
                 return redirect(setup_path)

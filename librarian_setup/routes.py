@@ -14,8 +14,6 @@ from bottle import request, redirect
 
 from librarian_core.contrib.templates.renderer import view
 
-from .setup import setup_wizard
-
 
 TUNER_DEV_PATH = '/dev/dvb/adapter0/frontend0'
 
@@ -27,7 +25,7 @@ def iter_lines(lines):
 
 @view('diag')
 def diag():
-    if setup_wizard.is_completed:
+    if request.app.supervisor.exts.is_completed:
         redirect('/')
 
     logpath = request.app.config['logging.syslog']
@@ -39,15 +37,19 @@ def diag():
     return dict(logs=logs, has_tuner=has_tuner)
 
 
+def enter_wizard():
+    return request.app.supervisor.exts.setup_wizard()
+
+
 def exit_wizard():
     next_path = request.params.get('next', '/')
-    setup_wizard.exit()
+    request.app.supervisor.exts.setup_wizard.exit()
     redirect(next_path)
 
 
 def routes(app):
     return (
-        ('setup:main', setup_wizard, ['GET', 'POST'], '/setup/', {}),
+        ('setup:main', enter_wizard, ['GET', 'POST'], '/setup/', {}),
         ('setup:exit', exit_wizard, ['GET'], '/setup/exit/', {}),
         ('setup:diag', diag, 'GET', '/diag/', {}),
     )

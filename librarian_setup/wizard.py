@@ -197,34 +197,43 @@ class Wizard(object):
         else:
             return use_index
 
+    def register(self, name, func, template, method=valid_methods, index=None,
+                 test=None):
+        next_free_idx = max(self.steps.keys() + [self.start_index - 1]) + 1
+        use_index = self.request_step_index(name, index, next_free_idx)
+
+        if (use_index in self.steps and
+                self.steps[use_index]['name'] != name):
+            # an auto-indexed handler probably have taken the place of this
+            # manually indexed handler, switch their places
+            self.steps[next_free_idx] = self.steps[use_index]
+            del self.steps[use_index]
+
+        methods = [method] if isinstance(method, basestring) else method
+        for method_name in methods:
+            if method_name not in self.valid_methods:
+                msg = '{0} is not an acceptable HTTP method.'.format(
+                    method_name
+                )
+                raise ValueError(msg)
+            self.steps.setdefault(use_index, dict(name=name))
+
+            if not callable(test):
+                raise TypeError('`test` parameter must be a callable.')
+            self.steps[use_index]['test'] = test
+
+            self.steps[use_index][method_name] = {'handler': func,
+                                                  'template': template}
+
     def register_step(self, name, template, method=valid_methods, index=None,
                       test=None):
         def decorator(func):
-            next_free_idx = max(self.steps.keys() + [self.start_index - 1]) + 1
-            use_index = self.request_step_index(name, index, next_free_idx)
-
-            if (use_index in self.steps and
-                    self.steps[use_index]['name'] != name):
-                # an auto-indexed handler probably have taken the place of this
-                # manually indexed handler, switch their places
-                self.steps[next_free_idx] = self.steps[use_index]
-                del self.steps[use_index]
-
-            methods = [method] if isinstance(method, basestring) else method
-            for method_name in methods:
-                if method_name not in self.valid_methods:
-                    msg = '{0} is not an acceptable HTTP method.'.format(
-                        method_name
-                    )
-                    raise ValueError(msg)
-                self.steps.setdefault(use_index, dict(name=name))
-
-                if not callable(test):
-                    raise TypeError('`test` parameter must be a callable.')
-                self.steps[use_index]['test'] = test
-
-                self.steps[use_index][method_name] = {'handler': func,
-                                                      'template': template}
+            self.register(name,
+                          func,
+                          template,
+                          method=method,
+                          index=index,
+                          test=test)
             return func
         return decorator
 

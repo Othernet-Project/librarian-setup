@@ -124,6 +124,3 @@ class SetupWizard(Wizard):
                     self.set_step_index(next_setup_step_index)
                 else:
                     self.set_step_index(wanted_step_index)
-
-
-setup_wizard = SetupWizard(name='setup')
