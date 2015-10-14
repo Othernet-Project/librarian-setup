@@ -9,13 +9,13 @@
     % for i in range(1, step_count + 1):
         % if i < step_index:
             <span class="step">
-                <span class="icon icon-checkbox-marked-circle-outline"></span>
+                <span class="icon icon-circle-ok"></span>
         % elif i == step_index:
             <span class="step">
-                <span class="icon icon-checkbox-blank-circle"></span>
+                <span class="icon icon-circle-dot"></span>
         % else:
             <span class="step">
-                <span class="icon icon-checkbox-blank-circle-outline"></span>
+                <span class="icon icon-circle"></span>
         % endif
         </span>
     % endfor
