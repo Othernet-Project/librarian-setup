@@ -20,3 +20,9 @@
 .wizard-steps .step {
   font-size: 160%;
 }
+
+/* line 23, ../../../src/scss/wizard.scss */
+.step-logo > .icon {
+  position: relative;
+  top: -3px;
+}
