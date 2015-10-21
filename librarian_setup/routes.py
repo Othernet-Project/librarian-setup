@@ -8,14 +8,11 @@ This software is free software licensed under the terms of GPLv3. See COPYING
 file that comes with the source code, or http://www.gnu.org/licenses/gpl.txt.
 """
 
-import os
-
 from bottle import request, redirect
 
 from librarian_core.contrib.templates.renderer import view
 
-
-TUNER_DEV_PATH = '/dev/dvb/adapter0/frontend0'
+from .tools import has_tuner
 
 
 def iter_lines(lines):
@@ -32,9 +29,7 @@ def diag():
     with open(logpath, 'rt') as log:
         logs = iter_lines(list(log)[-100:])
 
-    has_tuner = os.path.exists(TUNER_DEV_PATH)
-
-    return dict(logs=logs, has_tuner=has_tuner)
+    return dict(logs=logs, has_tuner=has_tuner())
 
 
 def enter_wizard():
