@@ -1,5 +1,9 @@
 <%inherit file="/narrow_base.tpl"/>
 
+<%block name="title">
+    ${_('Setup wizard')}
+</%block>
+
 <%block name="extra_head">
     <link rel="stylesheet" href="${assets['css/wizard']}">
 </%block>
