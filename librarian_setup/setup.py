@@ -63,7 +63,6 @@ class Setup(object):
         data = dict()
         for name, configurator in AUTO_CONFIGURATORS.items():
             data[name] = configurator()
-        print(data)
         return data
 
 
