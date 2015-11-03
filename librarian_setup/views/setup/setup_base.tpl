@@ -46,6 +46,9 @@
     </div>
 </%block>
 
+<%block name="footer">
+</%block>
+
 <%block name="script_templates"/>
 <%block name="extra_scripts">
     <script type="text/javascript" src="${assets['js/wizard']}"></script>
