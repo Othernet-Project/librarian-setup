@@ -39,7 +39,7 @@
                     % if step_index - 1 >= start_index:
                         <a class="button" href="${i18n_url('setup:main', step_param=step_index - 1)}">${_('Back')}</a>
                     % endif
-                    <button type="submit" name="action" value="next" class="primary">${_('Next')}</button>
+                    <button type="submit" name="action" value="next">${_('Finish') if step_index == step_count else _('Next')}</button>
                 </p>
             </form>
         </div>
