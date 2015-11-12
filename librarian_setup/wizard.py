@@ -124,6 +124,8 @@ class Wizard(object):
 
     def redirect_to_step(self):
         query = '?{0}={1}'.format(self.step_param, self.current_step_index)
+        if request.is_xhr:
+            return request.fullpath + query
         return redirect(request.fullpath + query)
 
     def start_next_step(self):
