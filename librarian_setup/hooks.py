@@ -13,7 +13,6 @@ def component_member_loaded(supervisor, member, config):
 
 def initialize(supervisor):
     # install app-wide access to setup parameters
-    supervisor.exts.setup = Setup(supervisor.config['setup.file'])
+    supervisor.exts.setup = Setup(supervisor)
     supervisor.exts.setup_wizard = SetupWizard(name='setup')
-    # merge setup parameters into app config
-    supervisor.config.update(dict(supervisor.exts.setup.items()))
+

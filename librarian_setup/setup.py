@@ -22,48 +22,53 @@ from .wizard import Wizard
 
 class Setup(object):
 
-    def __init__(self, setup_file):
-        self.setup_file = setup_file
-        self.data = self.load()
-        if not self.data:
-            self.data = self.auto_configure()
+    def __init__(self, supervisor):
+        self._supervisor = supervisor
+        self._setup_file = os.path.abspath(supervisor.config['setup.file'])
+        self._data = dict()
+
+        self._load()
+        if not self._data:
+            self._auto_configure()
+
+        self._update_config()
 
     def __getitem__(self, key):
-        return self.data[key]
+        return self._data[key]
 
     def __contains__(self, key):
-        return key in self.data
+        return key in self._data
 
     def get(self, key, default=None):
-        return self.data.get(key, default)
+        return self._data.get(key, default)
 
     def items(self):
-        return self.data.items()
-
-    def load(self):
-        """Attempt loading the setup data file."""
-        if not os.path.exists(self.setup_file):
-            return {}
-
-        try:
-            with open(self.setup_file, 'r') as s_file:
-                return json.load(s_file)
-        except Exception as exc:
-            msg = 'Setup file loading failed: {0}'.format(str(exc))
-            logging.error(msg)
-            return {}
+        return self._data.items()
 
     def append(self, new_data):
         """Save the setup data file."""
-        self.data.update(new_data)
-        with open(self.setup_file, 'w') as s_file:
-            json.dump(self.data, s_file)
+        self._data.update(new_data)
+        with open(self._setup_file, 'w') as s_file:
+            json.dump(self._data, s_file)
 
-    def auto_configure(self):
-        data = dict()
-        for name, configurator in AUTO_CONFIGURATORS.items():
-            data[name] = configurator()
-        return data
+        self._update_config()
+
+    def _update_config(self):
+        self._supervisor.config.update(self._data)
+
+    def _load(self):
+        """Attempt loading the setup data file."""
+        if os.path.exists(self._setup_file):
+            try:
+                with open(self._setup_file, 'r') as s_file:
+                    self._data = json.load(s_file)
+            except Exception as exc:
+                msg = 'Setup file loading failed: {0}'.format(str(exc))
+                logging.error(msg)
+
+    def _auto_configure(self):
+        for (name, configurator) in AUTO_CONFIGURATORS.items():
+            self._data[name] = configurator()
 
 
 class SetupWizard(Wizard):
